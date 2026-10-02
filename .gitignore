@@ -1,0 +1,3 @@
+.playwright-mcp/
+*.png
+!ibm_quantum_safe_4k_hero_05.png

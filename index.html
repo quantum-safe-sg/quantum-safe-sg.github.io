@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Singapore's Quantum-Safe Future</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        quantum: {
+                            deep: '#0c051a',
+                            night: '#150a2b',
+                            purple: '#8a3ffc',
+                            lavender: '#d1b3ff',
+                            cyan: '#00f0ff',
+                            slate: '#a2a9b0',
+                            cardBg: 'rgba(21, 10, 43, 0.65)',
+                            cardBorder: 'rgba(138, 63, 252, 0.25)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles to complement Tailwind */
+        body {
+            background-color: #0c051a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(21, 10, 43, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 63, 252, 0.25);
+        }
+
+        .glass-panel-heavy {
+            background: rgba(12, 5, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(138, 63, 252, 0.35);
+        }
+
+        /* Glowing accents */
+        .glow-text-purple {
+            text-shadow: 0 0 20px rgba(138, 63, 252, 0.6);
+        }
+
+        .glow-text-cyan {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+        }
+
+        .glow-border:hover {
+            box-shadow: 0 0 25px rgba(138, 63, 252, 0.4);
+            border-color: rgba(138, 63, 252, 0.7);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c051a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #341a5e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8a3ffc;
+        }
+
+        /* Hero Background with Dark Overlay */
+        .hero-section {
+            position: relative;
+            background-image: url('ibm_quantum_safe_4k_hero_05.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(21, 10, 43, 0.45) 0%, rgba(12, 5, 26, 0.98) 100%),
+                        linear-gradient(180deg, rgba(12, 5, 26, 0.3) 0%, rgba(12, 5, 26, 1) 100%);
+        }
+
+        /* Animation Keyframes */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.75; }
+        }
+        .pulse-slow {
+            animation: pulse-slow 4s infinite ease-in-out;
+        }
+
+        /* Custom timeline line */
+        .timeline-line {
+            background: linear-gradient(180deg, rgba(138, 63, 252, 0.1) 0%, rgba(138, 63, 252, 1) 15%, rgba(0, 240, 255, 1) 85%, rgba(0, 240, 255, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="selection:bg-quantum-purple selection:text-white antialiased">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/5 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center">
+        <a href="#" class="flex items-center space-x-3 group">
+            <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-quantum-purple to-quantum-cyan p-[1px]">
+                <div class="w-full h-full bg-quantum-deep rounded-[7px] flex items-center justify-center">
+                    <svg class="w-4 h-4 text-quantum-cyan group-hover:rotate-180 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                </div>
+            </div>
+            <span class="text-sm font-semibold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-quantum-lavender to-quantum-cyan">SG QUANTUM-SAFE</span>
+        </a>
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-8 text-sm font-medium">
+            <a href="#overview" class="text-quantum-slate hover:text-white transition-colors">Overview</a>
+            <a href="#pillars" class="text-quantum-slate hover:text-white transition-colors">Pillars</a>
+            <a href="#roadmap" class="text-quantum-slate hover:text-white transition-colors">Roadmap</a>
+            <a href="#sandbox" class="text-quantum-slate hover:text-white transition-colors">Quantum-Safe Centre</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-quantum-slate hover:text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-quantum-deep/95 backdrop-blur-xl pt-24 px-8 flex flex-col space-y-6 text-lg font-medium border-r border-white/5 transition-all duration-300">
+        <a href="#overview" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Overview</a>
+        <a href="#pillars" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Pillars</a>
+        <a href="#roadmap" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Roadmap</a>
+        <a href="#sandbox" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Quantum-Safe Centre</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section min-h-screen flex items-center justify-center pt-24 px-6 md:px-12">
+        <div class="hero-overlay"></div>
+        
+        <!-- Subtle Grid / Tech background effect -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(138,63,252,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(138,63,252,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto w-full py-12 md:py-20 flex flex-col items-center text-center">
+            <!-- Initiative Tag -->
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-quantum-purple/10 border border-quantum-purple/30 mb-6 pulse-slow">
+                <span class="w-2 h-2 rounded-full bg-quantum-purple shadow-[0_0_10px_#8a3ffc]"></span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-quantum-lavender">Quantum-Safe Initiative</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-6">
+                <span class="block text-white glow-text-purple mb-2">Building Singapore's</span>
+                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-quantum-purple via-quantum-lavender to-quantum-cyan glow-text-cyan py-1">
+                    Quantum-Safe Future
+                </span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-base md:text-xl text-quantum-slate max-w-3xl leading-relaxed mb-10">
+                Securing Singapore's communication networks, public services, and critical economic hubs against upcoming quantum cryptanalytic threats through global best-practice Post-Quantum Cryptography (PQC).
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto justify-center">
+                <a href="#overview" class="px-10 py-4 rounded-xl text-sm font-semibold uppercase tracking-wider text-white bg-quantum-purple hover:bg-[#9a54ff] transition-all duration-300 shadow-[0_0_20px_rgba(138,63,252,0.3)] hover:shadow-[0_0_30px_rgba(138,63,252,0.6)] transform hover:-translate-y-0.5">
+                    Learn the Threat
+                </a>
+            </div>
+
+            <!-- Dynamic Live Y2Q Timer -->
+            <div class="mt-16 glass-panel py-4 px-6 md:px-10 rounded-2xl flex flex-col md:flex-row items-center md:space-x-8 space-y-3 md:space-y-0 max-w-2xl w-full border border-quantum-purple/20">
+                <div class="text-left md:border-r md:border-white/10 pr-0 md:pr-8 w-full md:w-auto">
+                    <p class="text-[10px] font-bold text-quantum-purple tracking-widest uppercase mb-1">Estimated Horizon</p>
+                    <p class="text-sm font-bold text-white tracking-tight">Y2Q COUNTDOWN</p>
+                </div>
+                <div class="flex items-center space-x-6 justify-center w-full">
+                    <div class="text-center">
+                        <span id="timer-days" class="font-mono text-xl md:text-2xl font-bold text-quantum-cyan glow-text-cyan">--</span>
+                        <p class="text-[9px] text-quantum-slate uppercase font-semibold">Days</p>
+                    </div>
+                    <span class="text-white/20 font-light">:</span>
+                    <div class="text-center">
+                        <span id="timer-hours" class="font-mono text-xl md:text-2xl font-bold text-quantum-cyan glow-text-cyan">--</span>
+                        <p class="text-[9px] text-quantum-slate uppercase font-semibold">Hours</p>
+                    </div>
+                    <span class="text-white/20 font-light">:</span>
+                    <div class="text-center">
+                        <span id="timer-minutes" class="font-mono text-xl md:text-2xl font-bold text-quantum-cyan glow-text-cyan">--</span>
+                        <p class="text-[9px] text-quantum-slate uppercase font-semibold">Mins</p>
+                    </div>
+                    <span class="text-white/20 font-light">:</span>
+                    <div class="text-center">
+                        <span id="timer-seconds" class="font-mono text-xl md:text-2xl font-bold text-quantum-purple glow-text-purple">--</span>
+                        <p class="text-[9px] text-quantum-slate uppercase font-semibold">Secs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: THE THREAT & THE MISSION -->
+    <section id="overview" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <div class="lg:col-span-7 space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-quantum-cyan">The Impending Paradigm Shift</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Shor's Algorithm & The Threat to Global Cryptography
+                </h2>
+                <p class="text-quantum-slate leading-relaxed">
+                    Standard cryptographic architectures securing Singapore's digital banking, private medical records, and state networks rely heavily on math problems like Integer Factorization (RSA) and Discrete Logarithms (ECC).
+                </p>
+                <div class="p-5 rounded-2xl glass-panel bg-quantum-purple/5 border border-quantum-purple/10 space-y-3">
+                    <p class="text-sm font-semibold text-white flex items-center">
+                        <svg class="w-5 h-5 text-quantum-cyan mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-line-cap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                        The "Harvest Now, Decrypt Later" Danger
+                    </p>
+                    <p class="text-xs text-quantum-slate leading-relaxed">
+                        Hostile actors are actively intercepting and storing encrypted high-value corporate and state data today. Once a Cryptographically Relevant Quantum Computer (CRQC) is constructed, this historical data can be immediately decrypted retrospectively.
+                    </p>
+                </div>
+                <p class="text-quantum-slate leading-relaxed">
+                    Singapore's cryptographic transition represents a concerted framework to deploy hybrid and mathematical software solutions, integrating post-quantum cryptography on legacy lines while ensuring future readiness.
+                </p>
+            </div>
+
+            <!-- Interactive Metrics Block -->
+            <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-quantum-purple/30 flex flex-col justify-between h-full space-y-8 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-quantum-purple/10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-quantum-cyan/5 rounded-full blur-3xl"></div>
+
+                <div class="relative space-y-4">
+                    <span class="font-mono text-xs text-quantum-cyan uppercase tracking-wider">Metrics & Benchmarks</span>
+                    <h3 class="text-xl font-bold">Security Status & Readiness</h3>
+                </div>
+
+                <div class="space-y-6 relative">
+                    <!-- Metric 1 -->
+                    <div class="flex justify-between items-center pb-4 border-b border-white/5">
+                        <div>
+                            <p class="text-xs text-quantum-slate">RSA-2048 Cryptographic Life expectancy</p>
+                            <p class="text-lg font-semibold text-white">Critical Threat Level</p>
+                        </div>
+                        <span class="px-2.5 py-1 text-[10px] font-bold text-red-400 bg-red-950/40 border border-red-500/30 rounded-md">VULNERABLE</span>
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="flex justify-between items-center pb-4 border-b border-white/5">
+                        <div>
+                            <p class="text-xs text-quantum-slate">NIST-Standardized PQC Readiness</p>
+                            <p class="text-lg font-semibold text-white">Framework Established</p>
+                        </div>
+                        <span class="px-2.5 py-1 text-[10px] font-bold text-quantum-cyan bg-quantum-cyan/10 border border-quantum-cyan/30 rounded-md">IN PROGRESS</span>
+                    </div>
+
+                    <!-- Metric 3 -->
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-xs text-quantum-slate">PQC Algorithm Trial Integration</p>
+                            <p class="text-lg font-semibold text-white">Enterprise Testbeds</p>
+                        </div>
+                        <span class="px-2.5 py-1 text-[10px] font-bold text-quantum-lavender bg-quantum-purple/20 border border-quantum-purple/30 rounded-md">ACTIVE SYSTEM PILOTS</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/5 relative flex items-center justify-between text-xs text-quantum-slate">
+                    <span>Source: NQSN Advisory Board</span>
+                    <a href="#sandbox" class="text-quantum-cyan hover:underline font-medium">Verify Encryption Suitability →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: THE THREE PILLARS (PQC CORE) -->
+    <section id="pillars" class="py-24 px-6 md:px-12 bg-quantum-night/40 border-t border-white/5">
+        <div class="max-w-7xl mx-auto space-y-16">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-quantum-purple">Strategic Pillar</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Post-Quantum Cryptography (PQC)</h2>
+                <p class="text-quantum-slate">
+                    Singapore's software-based cryptographic transition centers on implementing mathematics-based security layers capable of repelling future cryptanalytic quantum attacks.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/20 glow-border transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/10 flex items-center justify-center border border-quantum-purple/30 text-quantum-purple group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold">PQC Algorithm Transition</h3>
+                        <p class="text-sm text-quantum-slate leading-relaxed">
+                            Systematically replacing outdated public-key infrastructures (RSA/ECC) with NIST-vetted lattice-based cryptographic algorithms, securing end-to-end data encryption with ML-KEM and digital validation with ML-DSA.
+                        </p>
+                    </div>
+                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-cyan space-x-2">
+                        <span>Algorithm Security</span>
+                        <span>•</span>
+                        <span class="text-white">ML-KEM, ML-DSA</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/20 glow-border transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/10 flex items-center justify-center border border-quantum-purple/30 text-quantum-cyan group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-quantum-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 15.89M9 11l3 3L21 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold">Cryptographic Agility</h3>
+                        <p class="text-sm text-quantum-slate leading-relaxed">
+                            Developing systems with "hot-swappable" encryption layers. Organizations can upgrade, adapt, and replace active digital encryption configurations dynamic-style without re-engineering core operational protocols.
+                        </p>
+                    </div>
+                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-cyan space-x-2">
+                        <span>Protocol Agility</span>
+                        <span>•</span>
+                        <span class="text-white">API Plug & Play</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/20 glow-border transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/10 flex items-center justify-center border border-quantum-purple/30 text-quantum-lavender group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold">PQC Discovery & Audits</h3>
+                        <p class="text-sm text-quantum-slate leading-relaxed">
+                            Conducting systematic inventory mappings of enterprise datasets, systems, and dependencies to discover hidden vulnerable asymmetric components, preparing businesses for timely compliance with CSA frameworks.
+                        </p>
+                    </div>
+                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-cyan space-x-2">
+                        <span>Inventory Mapping</span>
+                        <span>•</span>
+                        <span class="text-white">IMDA/CSA Readiness</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: THE TIMELINE / ROADMAP -->
+    <section id="roadmap" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+        <div class="space-y-16">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-quantum-cyan">Milestones & Rollout</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Singapore's Transition Roadmap</h2>
+                <p class="text-quantum-slate">
+                    A clear, phased timeline mapped out to secure enterprise communications, governmental networks, and private cloud architecture.
+                </p>
+            </div>
+
+            <!-- Timeline graphic -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Center Line (Desktop) -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] timeline-line transform md:-translate-x-1/2 rounded"></div>
+
+                <div class="space-y-12">
+                    
+                    <!-- Milestone 1 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
+                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        </div>
+                        
+                        <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right md:pr-12">
+                            <span class="font-mono text-xs text-quantum-cyan font-bold">PHASE 1 • 2024 - 2026</span>
+                            <h4 class="text-lg font-bold text-white mt-1">Pilot & Collaboration</h4>
+                            <p class="text-sm text-quantum-slate mt-2">
+                                Actively launching pilot systems, testing and deploying PQC implementations with tier-1 telecom providers (Singtel, StarHub, M1) and ecosystem trial partners.
+                            </p>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
+                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        </div>
+                        
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div class="w-full md:w-[45%] pl-12 md:pl-12">
+                            <span class="font-mono text-xs text-quantum-purple font-bold">CSA HANDBOOK • 31 MARCH 2027</span>
+                            <h4 class="text-lg font-bold text-white mt-1">Submission of Migration Plans</h4>
+                            <p class="text-sm text-quantum-slate mt-2">
+                                Deadline for Critical Information Infrastructure (CII) owners to submit a comprehensive, multi-year quantum-safe migration plan to the Cyber Security Agency of Singapore (CSA).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
+                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        </div>
+                        
+                        <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right md:pr-12">
+                            <span class="font-mono text-xs text-quantum-cyan font-bold">CSA MANDATE • 1 JANUARY 2028</span>
+                            <h4 class="text-lg font-bold text-white mt-1">Quantum-Safe Ready Procurement</h4>
+                            <p class="text-sm text-quantum-slate mt-2">
+                                All newly procured and implemented computer systems with a digital component in Singapore should support quantum-safe technologies or be quantum-safe ready.
+                            </p>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
+                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        </div>
+                        
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div class="w-full md:w-[45%] pl-12 md:pl-12">
+                            <span class="font-mono text-xs text-quantum-purple font-bold">CII DEADLINE • 31 DECEMBER 2031</span>
+                            <h4 class="text-lg font-bold text-white mt-1">Complete Full System Migration</h4>
+                            <p class="text-sm text-quantum-slate mt-2">
+                                Target deadline to complete full migration across all CII systems. Vulnerable legacy public-key cryptography (e.g. RSA, conventional ECC) must no longer be in active use.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ENGAGEMENT & COLLABORATION (COMING SOON) -->
+    <section id="sandbox" class="py-24 px-6 md:px-12 bg-quantum-night/40 border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center space-y-8">
+            <div class="space-y-4">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-quantum-cyan bg-quantum-cyan/10 border border-quantum-cyan/30 animate-pulse">
+                    Get Involved
+                </span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Further Engagement & Collaboration</h2>
+                <p class="text-quantum-slate max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
+                    Join public and enterprise efforts in transition planning. Participate in strategic workshops, hands-on labs, and collaborative sandbox trials.
+                </p>
+            </div>
+
+            <!-- Sleek Glass Placeholder Card -->
+            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-quantum-purple/20 max-w-2xl mx-auto space-y-6 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-quantum-purple/15 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-quantum-cyan/5 rounded-full blur-3xl"></div>
+                
+                <div class="flex items-center justify-center">
+                    <div class="w-16 h-16 rounded-full bg-quantum-purple/10 border border-quantum-purple/30 flex items-center justify-center text-quantum-purple">
+                        <svg class="w-8 h-8 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.001 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-lg font-bold">Register Your Interest</h3>
+                    <p class="text-xs text-quantum-slate leading-relaxed max-w-md mx-auto">
+                        We offer multiple pathways to further your cryptographic transition. Register to attend executive briefings, join hands-on technical workshops, discuss pilot collaborations, or get early access to our sandbox tools.
+                    </p>
+                </div>
+
+                <div class="pt-4 flex justify-center flex-col sm:flex-row gap-4 items-center">
+                    <a href="https://forms.cloud.microsoft/r/kVjashmpfn?origin=lprLink" target="_blank" rel="noopener noreferrer" class="px-8 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-quantum-purple hover:bg-[#9a54ff] transition-all duration-300 shadow-[0_0_15px_rgba(138,63,252,0.3)] hover:shadow-[0_0_25px_rgba(138,63,252,0.6)]">
+                        Register Interest Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="pt-20 pb-8 px-6 md:px-12 border-t border-white/5 bg-quantum-deep">
+        <div class="max-w-7xl mx-auto flex flex-col items-center text-center space-y-6 pb-12">
+            <a href="#" class="flex items-center space-x-3 group justify-center">
+                <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-quantum-purple to-quantum-cyan p-[1px]">
+                    <div class="w-full h-full bg-quantum-deep rounded-[7px] flex items-center justify-center">
+                        <svg class="w-4 h-4 text-quantum-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <span class="text-sm font-semibold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-quantum-lavender to-quantum-cyan">SG QUANTUM-SAFE</span>
+            </a>
+            <p class="text-xs text-quantum-slate max-w-xl leading-relaxed">
+                A public awareness framework dedicated to securing Singapore's digital sovereign infrastructure against future decryptions from cryptanalytically relevant quantum systems.
+            </p>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center text-xs text-quantum-slate gap-4">
+            <div class="text-center">
+                © 2026 Singapore Quantum-Safe Portal. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LAYER -->
+    <script>
+        // Hamburger Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Dynamic Countdown Timer to hypothetical Y2Q (Year to Quantum)
+        // Let's set Y2Q as April 14, 2030 (Estimated average projection of quantum risk)
+        const y2qDate = new Date('April 14, 2030 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = y2qDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timer-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('timer-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('timer-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('timer-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Run immediately
+    </script>
+</body>
+</html>
