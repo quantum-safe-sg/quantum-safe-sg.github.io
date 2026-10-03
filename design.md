@@ -6,16 +6,17 @@ This document details the layout, visual design, and content architecture for th
 
 ## 1. Visual Theme & Color Palette
 
-The main visual theme is **Futuristic, High-Tech, and Secure**, utilizing a **deep purple and violet palette** that matches the vibe of quantum computing and advanced cryptography.
+The main visual theme is **Futuristic, High-Tech, and Secure**, utilizing a crisp, modern **light theme with a deep purple and violet aesthetic** that matches the advanced feel of quantum computing and cryptography.
 
 ### Color Codes
-- **Background / Primary Dark**: `#0c051a` (Deep Space Obsidian Purple)
-- **Secondary Dark / Section Backgrounds**: `#150a2b` (Night Violet)
-- **Main Theme Accent**: `#8a3ffc` (Carbon Purple / Quantum Purple)
-- **Bright Accent / Highlights**: `#d1b3ff` (Soft Lavender) & `#00f0ff` (Quantum Cyan for subtle high-contrast accents)
-- **Text Primary**: `#ffffff` (White)
-- **Text Secondary**: `#c1c7cd` (Cool Gray 40)
-- **Card Background (Glassmorphism)**: `rgba(28, 15, 48, 0.65)` with border `rgba(138, 63, 252, 0.25)` and `backdrop-filter: blur(12px)`
+- **Background / Primary Light**: `#f8f9fc` (Clean off-white slate)
+- **Secondary Light / Section Backgrounds**: `#ffffff` (Pure White)
+- **Main Theme Accent**: `#6929c4` (Deep Purple Accent)
+- **Secondary Theme Accent / Highlights**: `#8a3ffc` (Vibrant Quantum Purple)
+- **Subtle Highlight / Hover states**: `#f1ecfe` (Soft Purple Mist)
+- **Text Primary**: `#161616` (Deep Charcoal Black for superior readability)
+- **Text Secondary**: `#525252` (Slate Gray)
+- **Card Background (Glassmorphism)**: `rgba(255, 255, 255, 0.75)` with border `rgba(105, 41, 196, 0.15)` and `backdrop-filter: blur(12px)`
 
 ### Typography
 - **Headings**: Modern sans-serif with wide tracking (e.g., IBM Plex Sans, Inter, or system-ui)
@@ -45,7 +46,7 @@ The page will be structured as a responsive, modern single-page web portal. It c
 ### Section 1: The Threat & The Mission (Briefing)
 - Split grid layout:
   - **Left**: A narrative on "Why Quantum-Safe?" explaining Shor's algorithm and the threat to RSA/ECC.
-  - **Right**: An interactive-looking metrics block (e.g., "Y2Q Countdown", "1024-bit Vulnerability Level", "Target Transition: 2026-2030").
+  - **Right**: An interactive-looking metrics block (e.g., "Quantum Advantage Countdown", "1024-bit Vulnerability Level", "Target Transition: 2026-2030").
 
 ### Section 2: Core Strategic Pillar - Post-Quantum Cryptography (PQC)
 A 3-part detailed focus on Singapore's software-based cryptographic transition:

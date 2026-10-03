@@ -21,14 +21,15 @@
                     },
                     colors: {
                         quantum: {
-                            deep: '#0c051a',
-                            night: '#150a2b',
-                            purple: '#8a3ffc',
-                            lavender: '#d1b3ff',
-                            cyan: '#00f0ff',
-                            slate: '#a2a9b0',
-                            cardBg: 'rgba(21, 10, 43, 0.65)',
-                            cardBorder: 'rgba(138, 63, 252, 0.25)',
+                            deep: 'var(--bg-quantum-deep)',
+                            night: 'var(--bg-quantum-night)',
+                            purple: 'var(--color-accent-purple)',
+                            lavender: 'var(--color-accent-lavender)',
+                            cyan: 'var(--color-accent-cyan)',
+                            slate: 'var(--color-text-secondary)',
+                            primary: 'var(--color-text-primary)',
+                            cardBg: 'var(--color-card-bg)',
+                            cardBorder: 'var(--color-card-border)',
                         }
                     }
                 }
@@ -36,41 +37,106 @@
         }
     </script>
     <style>
+        /* CSS Variables for Light (default) & Dark Theme */
+        :root {
+            --bg-quantum-deep: #f8f9fc;
+            --bg-quantum-night: #ffffff;
+            --color-text-primary: #161616;
+            --color-text-secondary: #525252;
+            --color-accent-purple: #6929c4;
+            --color-accent-lavender: #8a3ffc;
+            --color-accent-cyan: #005d5d;
+            --color-card-bg: rgba(255, 255, 255, 0.8);
+            --color-card-border: rgba(105, 41, 196, 0.15);
+            --hero-overlay-radial: rgba(248, 249, 252, 0.88);
+            --hero-overlay-linear-1: rgba(248, 249, 252, 0.4);
+            --hero-overlay-linear-2: rgba(248, 249, 252, 1);
+            --timeline-line-start: rgba(105, 41, 196, 0.1);
+            --timeline-line-mid-1: rgba(105, 41, 196, 1);
+            --timeline-line-mid-2: rgba(138, 63, 252, 1);
+            --timeline-line-end: rgba(138, 63, 252, 0.1);
+            
+            /* Metric Badges */
+            --badge-red-bg: #fef2f2;
+            --badge-red-text: #991b1b;
+            --badge-red-border: #fca5a5;
+            --badge-purple-bg: #faf5ff;
+            --badge-purple-text: #6b21a8;
+            --badge-purple-border: #e9d5ff;
+            --badge-indigo-bg: #eef2ff;
+            --badge-indigo-text: #3730a3;
+            --badge-indigo-border: #c7d2fe;
+            
+            --scrollbar-track: #f8f9fc;
+            --scrollbar-thumb: #dedfe5;
+            --scrollbar-thumb-hover: #6929c4;
+            --pulse-opacity-start: 0.6;
+            --pulse-opacity-end: 1;
+        }
+
+        .dark {
+            --bg-quantum-deep: #0c051a;
+            --bg-quantum-night: #150a2b;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #c1c7cd;
+            --color-accent-purple: #8a3ffc;
+            --color-accent-lavender: #d1b3ff;
+            --color-accent-cyan: #00f0ff;
+            --color-card-bg: rgba(21, 10, 43, 0.65);
+            --color-card-border: rgba(138, 63, 252, 0.25);
+            --hero-overlay-radial: rgba(21, 10, 43, 0.45);
+            --hero-overlay-linear-1: rgba(12, 5, 26, 0.3);
+            --hero-overlay-linear-2: rgba(12, 5, 26, 1);
+            --timeline-line-start: rgba(138, 63, 252, 0.1);
+            --timeline-line-mid-1: rgba(138, 63, 252, 1);
+            --timeline-line-mid-2: rgba(0, 240, 255, 1);
+            --timeline-line-end: rgba(0, 240, 255, 0.1);
+            
+            /* Metric Badges */
+            --badge-red-bg: rgba(127, 29, 29, 0.4);
+            --badge-red-text: #fca5a5;
+            --badge-red-border: rgba(239, 68, 68, 0.3);
+            --badge-purple-bg: rgba(107, 33, 168, 0.4);
+            --badge-purple-text: #e9d5ff;
+            --badge-purple-border: rgba(168, 85, 247, 0.3);
+            --badge-indigo-bg: rgba(49, 46, 129, 0.4);
+            --badge-indigo-text: #c7d2fe;
+            --badge-indigo-border: rgba(99, 102, 241, 0.3);
+            
+            --scrollbar-track: #0c051a;
+            --scrollbar-thumb: #341a5e;
+            --scrollbar-thumb-hover: #8a3ffc;
+            --pulse-opacity-start: 0.3;
+            --pulse-opacity-end: 0.75;
+        }
+
         /* Custom styles to complement Tailwind */
         body {
-            background-color: #0c051a;
-            color: #ffffff;
+            background-color: var(--bg-quantum-deep);
+            color: var(--color-text-primary);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Glassmorphism utility */
         .glass-panel {
-            background: rgba(21, 10, 43, 0.6);
+            background: var(--color-card-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(138, 63, 252, 0.25);
+            border: 1px solid var(--color-card-border);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
-        .glass-panel-heavy {
-            background: rgba(12, 5, 26, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(138, 63, 252, 0.35);
-        }
-
-        /* Glowing accents */
-        .glow-text-purple {
-            text-shadow: 0 0 20px rgba(138, 63, 252, 0.6);
-        }
-
-        .glow-text-cyan {
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-        }
-
+        /* Subtle modern drop shadow hover */
         .glow-border:hover {
-            box-shadow: 0 0 25px rgba(138, 63, 252, 0.4);
-            border-color: rgba(138, 63, 252, 0.7);
+            box-shadow: 0 10px 30px rgba(105, 41, 196, 0.08);
+            border-color: rgba(105, 41, 196, 0.4);
+        }
+        
+        .dark .glow-border:hover {
+            box-shadow: 0 10px 30px rgba(138, 63, 252, 0.15);
+            border-color: rgba(138, 63, 252, 0.6);
         }
 
         /* Custom scrollbar */
@@ -78,17 +144,17 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0c051a;
+            background: var(--scrollbar-track);
         }
         ::-webkit-scrollbar-thumb {
-            background: #341a5e;
+            background: var(--scrollbar-thumb);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #8a3ffc;
+            background: var(--scrollbar-thumb-hover);
         }
 
-        /* Hero Background with Dark Overlay */
+        /* Hero Background with Dynamic Overlay */
         .hero-section {
             position: relative;
             background-image: url('ibm_quantum_safe_4k_hero_05.png');
@@ -100,14 +166,15 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(21, 10, 43, 0.45) 0%, rgba(12, 5, 26, 0.98) 100%),
-                        linear-gradient(180deg, rgba(12, 5, 26, 0.3) 0%, rgba(12, 5, 26, 1) 100%);
+            background: radial-gradient(circle at 50% 50%, var(--hero-overlay-radial) 0%, var(--hero-overlay-linear-2) 100%),
+                        linear-gradient(180deg, var(--hero-overlay-linear-1) 0%, var(--hero-overlay-linear-2) 100%);
+            transition: background 0.3s ease;
         }
 
         /* Animation Keyframes */
         @keyframes pulse-slow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.75; }
+            0%, 100% { opacity: var(--pulse-opacity-start); }
+            50% { opacity: var(--pulse-opacity-end); }
         }
         .pulse-slow {
             animation: pulse-slow 4s infinite ease-in-out;
@@ -115,48 +182,93 @@
 
         /* Custom timeline line */
         .timeline-line {
-            background: linear-gradient(180deg, rgba(138, 63, 252, 0.1) 0%, rgba(138, 63, 252, 1) 15%, rgba(0, 240, 255, 1) 85%, rgba(0, 240, 255, 0.1) 100%);
+            background: linear-gradient(180deg, var(--timeline-line-start) 0%, var(--timeline-line-mid-1) 15%, var(--timeline-line-mid-2) 85%, var(--timeline-line-end) 100%);
+            transition: background 0.3s ease;
+        }
+        
+        /* Badges transition */
+        .badge-red {
+            background-color: var(--badge-red-bg);
+            color: var(--badge-red-text);
+            border: 1px solid var(--badge-red-border);
+        }
+        .badge-purple {
+            background-color: var(--badge-purple-bg);
+            color: var(--badge-purple-text);
+            border: 1px solid var(--badge-purple-border);
+        }
+        .badge-indigo {
+            background-color: var(--badge-indigo-bg);
+            color: var(--badge-indigo-text);
+            border: 1px solid var(--badge-indigo-border);
         }
     </style>
 </head>
 <body class="selection:bg-quantum-purple selection:text-white antialiased">
 
     <!-- NAVIGATION HEADER -->
-    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/5 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center">
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-quantum-purple/10 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center">
         <a href="#" class="flex items-center space-x-3 group">
-            <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-quantum-purple to-quantum-cyan p-[1px]">
-                <div class="w-full h-full bg-quantum-deep rounded-[7px] flex items-center justify-center">
-                    <svg class="w-4 h-4 text-quantum-cyan group-hover:rotate-180 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-quantum-purple to-quantum-lavender p-[1px]">
+                <div class="w-full h-full bg-quantum-night rounded-[7px] flex items-center justify-center transition-colors duration-300">
+                    <svg class="w-4 h-4 text-quantum-purple group-hover:rotate-180 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                     </svg>
                 </div>
             </div>
-            <span class="text-sm font-semibold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-quantum-lavender to-quantum-cyan">SG QUANTUM-SAFE</span>
+            <span class="text-sm font-semibold tracking-wider text-quantum-purple">SG QUANTUM-SAFE</span>
         </a>
         
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex space-x-8 text-sm font-medium">
-            <a href="#overview" class="text-quantum-slate hover:text-white transition-colors">Overview</a>
-            <a href="#pillars" class="text-quantum-slate hover:text-white transition-colors">Pillars</a>
-            <a href="#roadmap" class="text-quantum-slate hover:text-white transition-colors">Roadmap</a>
-            <a href="#sandbox" class="text-quantum-slate hover:text-white transition-colors">Quantum-Safe Centre</a>
-        </nav>
+        <!-- Desktop Nav + Theme Toggle -->
+        <div class="hidden md:flex items-center space-x-8">
+            <nav class="flex space-x-8 text-sm font-semibold">
+                <a href="#overview" class="text-quantum-slate hover:text-quantum-purple transition-colors">Overview</a>
+                <a href="#pillars" class="text-quantum-slate hover:text-quantum-purple transition-colors">Pillars</a>
+                <a href="#roadmap" class="text-quantum-slate hover:text-quantum-purple transition-colors">Roadmap</a>
+                <a href="#sandbox" class="text-quantum-slate hover:text-quantum-purple transition-colors">Quantum-Safe Centre</a>
+            </nav>
+            
+            <!-- Light/Dark Mode Switcher (Desktop) -->
+            <button id="theme-toggle-desktop" class="text-quantum-slate hover:text-quantum-purple p-2 rounded-lg hover:bg-quantum-purple/5 transition-all focus:outline-none" title="Toggle Light/Dark Theme">
+                <!-- Sun Icon (shown in dark mode) -->
+                <svg id="sun-icon-desktop" class="hidden w-5 h-5 text-quantum-lavender animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                </svg>
+                <!-- Moon Icon (shown in light mode) -->
+                <svg id="moon-icon-desktop" class="w-5 h-5 text-quantum-purple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+        </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-quantum-slate hover:text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
+        <!-- Mobile Menu + Theme Toggle -->
+        <div class="flex items-center space-x-4 md:hidden">
+            <!-- Light/Dark Mode Switcher (Mobile) -->
+            <button id="theme-toggle-mobile" class="text-quantum-slate hover:text-quantum-purple p-2 rounded-lg hover:bg-quantum-purple/5 transition-all focus:outline-none" title="Toggle Light/Dark Theme">
+                <svg id="sun-icon-mobile" class="hidden w-5 h-5 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                </svg>
+                <svg id="moon-icon-mobile" class="w-5 h-5 text-quantum-purple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+            
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="text-quantum-slate hover:text-quantum-purple focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-quantum-deep/95 backdrop-blur-xl pt-24 px-8 flex flex-col space-y-6 text-lg font-medium border-r border-white/5 transition-all duration-300">
-        <a href="#overview" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Overview</a>
-        <a href="#pillars" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Pillars</a>
-        <a href="#roadmap" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Roadmap</a>
-        <a href="#sandbox" class="text-quantum-slate hover:text-white py-2 border-b border-white/5">Quantum-Safe Centre</a>
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-quantum-night/95 backdrop-blur-xl pt-24 px-8 flex flex-col space-y-6 text-lg font-semibold border-r border-quantum-purple/10 transition-all duration-300">
+        <a href="#overview" class="text-quantum-slate hover:text-quantum-purple py-2 border-b border-quantum-purple/10">Overview</a>
+        <a href="#pillars" class="text-quantum-slate hover:text-quantum-purple py-2 border-b border-quantum-purple/10">Pillars</a>
+        <a href="#roadmap" class="text-quantum-slate hover:text-quantum-purple py-2 border-b border-quantum-purple/10">Roadmap</a>
+        <a href="#sandbox" class="text-quantum-slate hover:text-quantum-purple py-2 border-b border-quantum-purple/10">Quantum-Safe Centre</a>
     </div>
 
     <!-- HERO SECTION -->
@@ -164,19 +276,19 @@
         <div class="hero-overlay"></div>
         
         <!-- Subtle Grid / Tech background effect -->
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(138,63,252,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(138,63,252,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(105,41,196,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(105,41,196,0.015)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         
         <div class="relative z-10 max-w-5xl mx-auto w-full py-12 md:py-20 flex flex-col items-center text-center">
             <!-- Initiative Tag -->
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-quantum-purple/10 border border-quantum-purple/30 mb-6 pulse-slow">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-quantum-purple/5 border border-quantum-purple/20 mb-6 pulse-slow">
                 <span class="w-2 h-2 rounded-full bg-quantum-purple shadow-[0_0_10px_#8a3ffc]"></span>
-                <span class="text-xs font-semibold uppercase tracking-widest text-quantum-lavender">Quantum-Safe Initiative</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-quantum-purple">Quantum-Safe Initiative</span>
             </div>
 
             <!-- Main Title -->
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-6">
-                <span class="block text-white glow-text-purple mb-2">Building Singapore's</span>
-                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-quantum-purple via-quantum-lavender to-quantum-cyan glow-text-cyan py-1">
+                <span class="block text-quantum-primary mb-2">Building Singapore's</span>
+                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-quantum-purple to-quantum-lavender py-1">
                     Quantum-Safe Future
                 </span>
             </h1>
@@ -188,35 +300,35 @@
 
             <!-- Buttons -->
             <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto justify-center">
-                <a href="#overview" class="px-10 py-4 rounded-xl text-sm font-semibold uppercase tracking-wider text-white bg-quantum-purple hover:bg-[#9a54ff] transition-all duration-300 shadow-[0_0_20px_rgba(138,63,252,0.3)] hover:shadow-[0_0_30px_rgba(138,63,252,0.6)] transform hover:-translate-y-0.5">
+                <a href="#overview" class="px-10 py-4 rounded-xl text-sm font-bold uppercase tracking-wider text-white bg-quantum-purple hover:bg-[#7c3aed] transition-all duration-300 shadow-[0_4px_20px_rgba(105,41,196,0.25)] hover:shadow-[0_6px_30px_rgba(105,41,196,0.45)] transform hover:-translate-y-0.5">
                     Learn the Threat
                 </a>
             </div>
 
-            <!-- Dynamic Live Y2Q Timer -->
-            <div class="mt-16 glass-panel py-4 px-6 md:px-10 rounded-2xl flex flex-col md:flex-row items-center md:space-x-8 space-y-3 md:space-y-0 max-w-2xl w-full border border-quantum-purple/20">
-                <div class="text-left md:border-r md:border-white/10 pr-0 md:pr-8 w-full md:w-auto">
+            <!-- Dynamic Live Quantum Advantage Timer -->
+            <div class="mt-16 glass-panel py-5 px-6 md:px-10 rounded-2xl flex flex-col md:flex-row items-center md:space-x-8 space-y-3 md:space-y-0 max-w-2xl w-full border border-quantum-purple/15 shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
+                <div class="text-left md:border-r md:border-quantum-purple/10 pr-0 md:pr-8 w-full md:w-auto">
                     <p class="text-[10px] font-bold text-quantum-purple tracking-widest uppercase mb-1">Estimated Horizon</p>
-                    <p class="text-sm font-bold text-white tracking-tight">Y2Q COUNTDOWN</p>
+                    <p class="text-sm font-extrabold text-quantum-primary tracking-tight">QUANTUM ADVANTAGE COUNTDOWN</p>
                 </div>
                 <div class="flex items-center space-x-6 justify-center w-full">
                     <div class="text-center">
-                        <span id="timer-days" class="font-mono text-xl md:text-2xl font-bold text-quantum-cyan glow-text-cyan">--</span>
+                        <span id="timer-days" class="font-mono text-xl md:text-2xl font-bold text-quantum-purple">--</span>
                         <p class="text-[9px] text-quantum-slate uppercase font-semibold">Days</p>
                     </div>
-                    <span class="text-white/20 font-light">:</span>
+                    <span class="text-quantum-purple/20 font-light">:</span>
                     <div class="text-center">
-                        <span id="timer-hours" class="font-mono text-xl md:text-2xl font-bold text-quantum-cyan glow-text-cyan">--</span>
+                        <span id="timer-hours" class="font-mono text-xl md:text-2xl font-bold text-quantum-purple">--</span>
                         <p class="text-[9px] text-quantum-slate uppercase font-semibold">Hours</p>
                     </div>
-                    <span class="text-white/20 font-light">:</span>
+                    <span class="text-quantum-purple/20 font-light">:</span>
                     <div class="text-center">
-                        <span id="timer-minutes" class="font-mono text-xl md:text-2xl font-bold text-quantum-cyan glow-text-cyan">--</span>
+                        <span id="timer-minutes" class="font-mono text-xl md:text-2xl font-bold text-quantum-purple">--</span>
                         <p class="text-[9px] text-quantum-slate uppercase font-semibold">Mins</p>
                     </div>
-                    <span class="text-white/20 font-light">:</span>
+                    <span class="text-quantum-purple/20 font-light">:</span>
                     <div class="text-center">
-                        <span id="timer-seconds" class="font-mono text-xl md:text-2xl font-bold text-quantum-purple glow-text-purple">--</span>
+                        <span id="timer-seconds" class="font-mono text-xl md:text-2xl font-bold text-quantum-lavender">--</span>
                         <p class="text-[9px] text-quantum-slate uppercase font-semibold">Secs</p>
                     </div>
                 </div>
@@ -225,20 +337,20 @@
     </section>
 
     <!-- SECTION: THE THREAT & THE MISSION -->
-    <section id="overview" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+    <section id="overview" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-quantum-purple/10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <div class="lg:col-span-7 space-y-6">
-                <span class="text-xs font-bold uppercase tracking-widest text-quantum-cyan">The Impending Paradigm Shift</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                <span class="text-xs font-bold uppercase tracking-widest text-quantum-purple">The Impending Paradigm Shift</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-quantum-primary">
                     Shor's Algorithm & The Threat to Global Cryptography
                 </h2>
-                <p class="text-quantum-slate leading-relaxed">
+                <p class="text-quantum-slate leading-relaxed text-sm md:text-base">
                     Standard cryptographic architectures securing Singapore's digital banking, private medical records, and state networks rely heavily on math problems like Integer Factorization (RSA) and Discrete Logarithms (ECC).
                 </p>
-                <div class="p-5 rounded-2xl glass-panel bg-quantum-purple/5 border border-quantum-purple/10 space-y-3">
-                    <p class="text-sm font-semibold text-white flex items-center">
-                        <svg class="w-5 h-5 text-quantum-cyan mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="p-6 rounded-2xl glass-panel bg-quantum-purple/5 border border-quantum-purple/10 space-y-3 shadow-[0_4px_20px_rgba(105,41,196,0.02)]">
+                    <p class="text-sm font-bold text-quantum-purple flex items-center">
+                        <svg class="w-5 h-5 text-quantum-purple mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-line-cap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                         </svg>
                         The "Harvest Now, Decrypt Later" Danger
@@ -247,53 +359,52 @@
                         Hostile actors are actively intercepting and storing encrypted high-value corporate and state data today. Once a Cryptographically Relevant Quantum Computer (CRQC) is constructed, this historical data can be immediately decrypted retrospectively.
                     </p>
                 </div>
-                <p class="text-quantum-slate leading-relaxed">
+                <p class="text-quantum-slate leading-relaxed text-sm md:text-base">
                     Singapore's cryptographic transition represents a concerted framework to deploy hybrid and mathematical software solutions, integrating post-quantum cryptography on legacy lines while ensuring future readiness.
                 </p>
             </div>
 
-            <!-- Interactive Metrics Block -->
-            <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-quantum-purple/30 flex flex-col justify-between h-full space-y-8 relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-quantum-purple/10 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-quantum-cyan/5 rounded-full blur-3xl"></div>
+            <!-- Metrics Block -->
+            <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-quantum-purple/20 flex flex-col justify-between h-full space-y-8 relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-quantum-purple/5 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-quantum-purple/5 rounded-full blur-3xl"></div>
 
                 <div class="relative space-y-4">
-                    <span class="font-mono text-xs text-quantum-cyan uppercase tracking-wider">Metrics & Benchmarks</span>
-                    <h3 class="text-xl font-bold">Security Status & Readiness</h3>
+                    <span class="font-mono text-xs text-quantum-purple font-bold uppercase tracking-wider">Metrics & Benchmarks</span>
+                    <h3 class="text-xl font-extrabold text-quantum-primary">Security Status & Readiness</h3>
                 </div>
 
                 <div class="space-y-6 relative">
                     <!-- Metric 1 -->
-                    <div class="flex justify-between items-center pb-4 border-b border-white/5">
+                    <div class="flex justify-between items-center pb-4 border-b border-quantum-purple/10">
                         <div>
                             <p class="text-xs text-quantum-slate">RSA-2048 Cryptographic Life expectancy</p>
-                            <p class="text-lg font-semibold text-white">Critical Threat Level</p>
+                            <p class="text-base font-bold text-quantum-primary">Critical Threat Level</p>
                         </div>
-                        <span class="px-2.5 py-1 text-[10px] font-bold text-red-400 bg-red-950/40 border border-red-500/30 rounded-md">VULNERABLE</span>
+                        <span class="px-2.5 py-1 text-[10px] font-bold badge-red rounded-md">VULNERABLE</span>
                     </div>
 
                     <!-- Metric 2 -->
-                    <div class="flex justify-between items-center pb-4 border-b border-white/5">
+                    <div class="flex justify-between items-center pb-4 border-b border-quantum-purple/10">
                         <div>
                             <p class="text-xs text-quantum-slate">NIST-Standardized PQC Readiness</p>
-                            <p class="text-lg font-semibold text-white">Framework Established</p>
+                            <p class="text-base font-bold text-quantum-primary">Framework Established</p>
                         </div>
-                        <span class="px-2.5 py-1 text-[10px] font-bold text-quantum-cyan bg-quantum-cyan/10 border border-quantum-cyan/30 rounded-md">IN PROGRESS</span>
+                        <span class="px-2.5 py-1 text-[10px] font-bold badge-purple rounded-md">IN PROGRESS</span>
                     </div>
 
                     <!-- Metric 3 -->
                     <div class="flex justify-between items-center">
                         <div>
                             <p class="text-xs text-quantum-slate">PQC Algorithm Trial Integration</p>
-                            <p class="text-lg font-semibold text-white">Enterprise Testbeds</p>
+                            <p class="text-base font-bold text-quantum-primary">Enterprise Testbeds</p>
                         </div>
-                        <span class="px-2.5 py-1 text-[10px] font-bold text-quantum-lavender bg-quantum-purple/20 border border-quantum-purple/30 rounded-md">ACTIVE SYSTEM PILOTS</span>
+                        <span class="px-2.5 py-1 text-[10px] font-bold badge-indigo rounded-md">ACTIVE SYSTEM PILOTS</span>
                     </div>
                 </div>
 
-                <div class="pt-4 border-t border-white/5 relative flex items-center justify-between text-xs text-quantum-slate">
-                    <span>Source: NQSN Advisory Board</span>
-                    <a href="#sandbox" class="text-quantum-cyan hover:underline font-medium">Verify Encryption Suitability →</a>
+                <div class="pt-4 border-t border-quantum-purple/10 relative flex items-center justify-between text-xs text-quantum-slate">
+                    <span>Source: Advisory Board</span>
                 </div>
             </div>
 
@@ -301,11 +412,11 @@
     </section>
 
     <!-- SECTION: THE THREE PILLARS (PQC CORE) -->
-    <section id="pillars" class="py-24 px-6 md:px-12 bg-quantum-night/40 border-t border-white/5">
+    <section id="pillars" class="py-24 px-6 md:px-12 bg-quantum-night border-t border-quantum-purple/10 transition-colors duration-300">
         <div class="max-w-7xl mx-auto space-y-16">
             <div class="text-center max-w-3xl mx-auto space-y-4">
                 <span class="text-xs font-bold uppercase tracking-widest text-quantum-purple">Strategic Pillar</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Post-Quantum Cryptography (PQC)</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-quantum-primary">Post-Quantum Cryptography (PQC)</h2>
                 <p class="text-quantum-slate">
                     Singapore's software-based cryptographic transition centers on implementing mathematics-based security layers capable of repelling future cryptanalytic quantum attacks.
                 </p>
@@ -313,62 +424,62 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Pillar 1 -->
-                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/20 glow-border transition-all duration-300 flex flex-col justify-between group">
+                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/15 glow-border transition-all duration-300 flex flex-col justify-between group shadow-sm bg-quantum-night">
                     <div class="space-y-6">
-                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/10 flex items-center justify-center border border-quantum-purple/30 text-quantum-purple group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/5 flex items-center justify-center border border-quantum-purple/15 text-quantum-purple group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-quantum-purple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold">PQC Algorithm Transition</h3>
+                        <h3 class="text-xl font-extrabold text-quantum-primary">PQC Algorithm Transition</h3>
                         <p class="text-sm text-quantum-slate leading-relaxed">
                             Systematically replacing outdated public-key infrastructures (RSA/ECC) with NIST-vetted lattice-based cryptographic algorithms, securing end-to-end data encryption with ML-KEM and digital validation with ML-DSA.
                         </p>
                     </div>
-                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-cyan space-x-2">
+                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-purple space-x-2">
                         <span>Algorithm Security</span>
                         <span>•</span>
-                        <span class="text-white">ML-KEM, ML-DSA</span>
+                        <span class="text-quantum-primary">ML-KEM, ML-DSA</span>
                     </div>
                 </div>
 
                 <!-- Pillar 2 -->
-                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/20 glow-border transition-all duration-300 flex flex-col justify-between group">
+                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/15 glow-border transition-all duration-300 flex flex-col justify-between group shadow-sm bg-quantum-night">
                     <div class="space-y-6">
-                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/10 flex items-center justify-center border border-quantum-purple/30 text-quantum-cyan group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-quantum-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/5 flex items-center justify-center border border-quantum-purple/15 text-quantum-purple group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-quantum-purple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 15.89M9 11l3 3L21 4"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold">Cryptographic Agility</h3>
+                        <h3 class="text-xl font-extrabold text-quantum-primary">Cryptographic Agility</h3>
                         <p class="text-sm text-quantum-slate leading-relaxed">
                             Developing systems with "hot-swappable" encryption layers. Organizations can upgrade, adapt, and replace active digital encryption configurations dynamic-style without re-engineering core operational protocols.
                         </p>
                     </div>
-                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-cyan space-x-2">
+                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-purple space-x-2">
                         <span>Protocol Agility</span>
                         <span>•</span>
-                        <span class="text-white">API Plug & Play</span>
+                        <span class="text-quantum-primary">API Plug & Play</span>
                     </div>
                 </div>
 
                 <!-- Pillar 3 -->
-                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/20 glow-border transition-all duration-300 flex flex-col justify-between group">
+                <div class="glass-panel p-8 rounded-3xl border border-quantum-purple/15 glow-border transition-all duration-300 flex flex-col justify-between group shadow-sm bg-quantum-night">
                     <div class="space-y-6">
-                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/10 flex items-center justify-center border border-quantum-purple/30 text-quantum-lavender group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="w-12 h-12 rounded-2xl bg-quantum-purple/5 flex items-center justify-center border border-quantum-purple/15 text-quantum-purple group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-quantum-purple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold">PQC Discovery & Audits</h3>
+                        <h3 class="text-xl font-extrabold text-quantum-primary">PQC Discovery & Audits</h3>
                         <p class="text-sm text-quantum-slate leading-relaxed">
                             Conducting systematic inventory mappings of enterprise datasets, systems, and dependencies to discover hidden vulnerable asymmetric components, preparing businesses for timely compliance with CSA frameworks.
                         </p>
                     </div>
-                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-cyan space-x-2">
+                    <div class="pt-8 flex items-center text-xs font-semibold text-quantum-purple space-x-2">
                         <span>Inventory Mapping</span>
                         <span>•</span>
-                        <span class="text-white">IMDA/CSA Readiness</span>
+                        <span class="text-quantum-primary">IMDA/CSA Readiness</span>
                     </div>
                 </div>
             </div>
@@ -376,11 +487,11 @@
     </section>
 
     <!-- SECTION: THE TIMELINE / ROADMAP -->
-    <section id="roadmap" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+    <section id="roadmap" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-quantum-purple/10">
         <div class="space-y-16">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-quantum-cyan">Milestones & Rollout</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Singapore's Transition Roadmap</h2>
+                <span class="text-xs font-bold uppercase tracking-widest text-quantum-purple">Milestones & Rollout</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-quantum-primary">Singapore's Transition Roadmap</h2>
                 <p class="text-quantum-slate">
                     A clear, phased timeline mapped out to secure enterprise communications, governmental networks, and private cloud architecture.
                 </p>
@@ -395,13 +506,13 @@
                     
                     <!-- Milestone 1 -->
                     <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
-                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
-                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-night border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10 transition-colors duration-300">
+                            <span class="w-2 h-2 rounded-full bg-quantum-purple"></span>
                         </div>
                         
                         <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right md:pr-12">
-                            <span class="font-mono text-xs text-quantum-cyan font-bold">PHASE 1 • 2024 - 2026</span>
-                            <h4 class="text-lg font-bold text-white mt-1">Pilot & Collaboration</h4>
+                            <span class="font-mono text-xs text-quantum-purple font-bold">PHASE 1 • 2024 - 2026</span>
+                            <h4 class="text-lg font-bold text-quantum-primary mt-1">Pilot & Collaboration</h4>
                             <p class="text-sm text-quantum-slate mt-2">
                                 Actively launching pilot systems, testing and deploying PQC implementations with tier-1 telecom providers (Singtel, StarHub, M1) and ecosystem trial partners.
                             </p>
@@ -411,14 +522,14 @@
 
                     <!-- Milestone 2 -->
                     <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
-                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
-                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-night border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10 transition-colors duration-300">
+                            <span class="w-2 h-2 rounded-full bg-quantum-purple"></span>
                         </div>
                         
                         <div class="hidden md:block w-[45%]"></div>
                         <div class="w-full md:w-[45%] pl-12 md:pl-12">
                             <span class="font-mono text-xs text-quantum-purple font-bold">CSA HANDBOOK • 31 MARCH 2027</span>
-                            <h4 class="text-lg font-bold text-white mt-1">Submission of Migration Plans</h4>
+                            <h4 class="text-lg font-bold text-quantum-primary mt-1">Submission of Migration Plans</h4>
                             <p class="text-sm text-quantum-slate mt-2">
                                 Deadline for Critical Information Infrastructure (CII) owners to submit a comprehensive, multi-year quantum-safe migration plan to the Cyber Security Agency of Singapore (CSA).
                             </p>
@@ -427,13 +538,13 @@
 
                     <!-- Milestone 3 -->
                     <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
-                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
-                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-night border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10 transition-colors duration-300">
+                            <span class="w-2 h-2 rounded-full bg-quantum-purple"></span>
                         </div>
                         
                         <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right md:pr-12">
-                            <span class="font-mono text-xs text-quantum-cyan font-bold">CSA MANDATE • 1 JANUARY 2028</span>
-                            <h4 class="text-lg font-bold text-white mt-1">Quantum-Safe Ready Procurement</h4>
+                            <span class="font-mono text-xs text-quantum-purple font-bold">CSA MANDATE • 1 JANUARY 2028</span>
+                            <h4 class="text-lg font-bold text-quantum-primary mt-1">Quantum-Safe Ready Procurement</h4>
                             <p class="text-sm text-quantum-slate mt-2">
                                 All newly procured and implemented computer systems with a digital component in Singapore should support quantum-safe technologies or be quantum-safe ready.
                             </p>
@@ -443,14 +554,14 @@
 
                     <!-- Milestone 4 -->
                     <div class="relative flex flex-col md:flex-row md:items-center justify-between group">
-                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-deep border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10">
-                            <span class="w-2 h-2 rounded-full bg-quantum-cyan"></span>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-quantum-night border-4 border-quantum-purple transform -translate-x-[15px] md:-translate-x-4 flex items-center justify-center z-10 transition-colors duration-300">
+                            <span class="w-2 h-2 rounded-full bg-quantum-purple"></span>
                         </div>
                         
                         <div class="hidden md:block w-[45%]"></div>
                         <div class="w-full md:w-[45%] pl-12 md:pl-12">
                             <span class="font-mono text-xs text-quantum-purple font-bold">CII DEADLINE • 31 DECEMBER 2031</span>
-                            <h4 class="text-lg font-bold text-white mt-1">Complete Full System Migration</h4>
+                            <h4 class="text-lg font-bold text-quantum-primary mt-1">Complete Full System Migration</h4>
                             <p class="text-sm text-quantum-slate mt-2">
                                 Target deadline to complete full migration across all CII systems. Vulnerable legacy public-key cryptography (e.g. RSA, conventional ECC) must no longer be in active use.
                             </p>
@@ -463,40 +574,40 @@
     </section>
 
     <!-- SECTION: ENGAGEMENT & COLLABORATION (COMING SOON) -->
-    <section id="sandbox" class="py-24 px-6 md:px-12 bg-quantum-night/40 border-t border-white/5">
+    <section id="sandbox" class="py-24 px-6 md:px-12 bg-quantum-deep border-t border-quantum-purple/10">
         <div class="max-w-4xl mx-auto text-center space-y-8">
             <div class="space-y-4">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-quantum-cyan bg-quantum-cyan/10 border border-quantum-cyan/30 animate-pulse">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-quantum-purple bg-quantum-purple/5 border border-quantum-purple/20 animate-pulse">
                     Get Involved
                 </span>
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Further Engagement & Collaboration</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-quantum-primary">Further Engagement & Collaboration</h2>
                 <p class="text-quantum-slate max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
                     Join public and enterprise efforts in transition planning. Participate in strategic workshops, hands-on labs, and collaborative sandbox trials.
                 </p>
             </div>
 
             <!-- Sleek Glass Placeholder Card -->
-            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-quantum-purple/20 max-w-2xl mx-auto space-y-6 relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-quantum-purple/15 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-quantum-cyan/5 rounded-full blur-3xl"></div>
+            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-quantum-purple/15 max-w-2xl mx-auto space-y-6 relative overflow-hidden shadow-sm bg-quantum-night">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-quantum-purple/5 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-quantum-purple/5 rounded-full blur-3xl"></div>
                 
                 <div class="flex items-center justify-center">
-                    <div class="w-16 h-16 rounded-full bg-quantum-purple/10 border border-quantum-purple/30 flex items-center justify-center text-quantum-purple">
-                        <svg class="w-8 h-8 text-quantum-lavender" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div class="w-16 h-16 rounded-full bg-quantum-purple/5 border border-quantum-purple/15 flex items-center justify-center text-quantum-purple animate-bounce">
+                        <svg class="w-8 h-8 text-quantum-purple" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.001 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
                 </div>
 
                 <div class="space-y-2">
-                    <h3 class="text-lg font-bold">Register Your Interest</h3>
+                    <h3 class="text-lg font-bold text-quantum-primary">Register Your Interest</h3>
                     <p class="text-xs text-quantum-slate leading-relaxed max-w-md mx-auto">
                         We offer multiple pathways to further your cryptographic transition. Register to attend executive briefings, join hands-on technical workshops, discuss pilot collaborations, or get early access to our sandbox tools.
                     </p>
                 </div>
 
                 <div class="pt-4 flex justify-center flex-col sm:flex-row gap-4 items-center">
-                    <a href="https://forms.cloud.microsoft/r/kVjashmpfn?origin=lprLink" target="_blank" rel="noopener noreferrer" class="px-8 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-quantum-purple hover:bg-[#9a54ff] transition-all duration-300 shadow-[0_0_15px_rgba(138,63,252,0.3)] hover:shadow-[0_0_25px_rgba(138,63,252,0.6)]">
+                    <a href="https://forms.cloud.microsoft/r/kVjashmpfn?origin=lprLink" target="_blank" rel="noopener noreferrer" class="px-8 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-quantum-purple hover:bg-[#7c3aed] transition-all duration-300 shadow-[0_4px_15px_rgba(105,41,196,0.2)] hover:shadow-[0_6px_25px_rgba(105,41,196,0.4)]">
                         Register Interest Now
                     </a>
                 </div>
@@ -505,24 +616,24 @@
     </section>
 
     <!-- FOOTER SECTION -->
-    <footer class="pt-20 pb-8 px-6 md:px-12 border-t border-white/5 bg-quantum-deep">
+    <footer class="pt-20 pb-8 px-6 md:px-12 border-t border-quantum-purple/10 bg-quantum-night transition-colors duration-300">
         <div class="max-w-7xl mx-auto flex flex-col items-center text-center space-y-6 pb-12">
             <a href="#" class="flex items-center space-x-3 group justify-center">
-                <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-quantum-purple to-quantum-cyan p-[1px]">
-                    <div class="w-full h-full bg-quantum-deep rounded-[7px] flex items-center justify-center">
-                        <svg class="w-4 h-4 text-quantum-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-quantum-purple to-quantum-lavender p-[1px]">
+                    <div class="w-full h-full bg-quantum-night rounded-[7px] flex items-center justify-center transition-colors duration-300">
+                        <svg class="w-4 h-4 text-quantum-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                     </div>
                 </div>
-                <span class="text-sm font-semibold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-quantum-lavender to-quantum-cyan">SG QUANTUM-SAFE</span>
+                <span class="text-sm font-semibold tracking-wider text-quantum-purple">SG QUANTUM-SAFE</span>
             </a>
             <p class="text-xs text-quantum-slate max-w-xl leading-relaxed">
                 A public awareness framework dedicated to securing Singapore's digital sovereign infrastructure against future decryptions from cryptanalytically relevant quantum systems.
             </p>
         </div>
 
-        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center text-xs text-quantum-slate gap-4">
+        <div class="pt-8 border-t border-quantum-purple/10 flex flex-col md:flex-row items-center justify-center text-xs text-quantum-slate gap-4">
             <div class="text-center">
                 © 2026 Singapore Quantum-Safe Portal. All rights reserved.
             </div>
@@ -531,6 +642,53 @@
 
     <!-- INTERACTIVE JAVASCRIPT LAYER -->
     <script>
+        // Theme Toggle Logic (Light / Dark Mode)
+        const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        const sunIconDesktop = document.getElementById('sun-icon-desktop');
+        const moonIconDesktop = document.getElementById('moon-icon-desktop');
+        const sunIconMobile = document.getElementById('sun-icon-mobile');
+        const moonIconMobile = document.getElementById('moon-icon-mobile');
+
+        // Check if theme was saved, default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            showSunIcon();
+        } else {
+            document.documentElement.classList.remove('dark');
+            showMoonIcon();
+        }
+
+        function showSunIcon() {
+            sunIconDesktop.classList.remove('hidden');
+            moonIconDesktop.classList.add('hidden');
+            sunIconMobile.classList.remove('hidden');
+            moonIconMobile.classList.add('hidden');
+        }
+
+        function showMoonIcon() {
+            sunIconDesktop.classList.add('hidden');
+            moonIconDesktop.classList.remove('hidden');
+            sunIconMobile.classList.add('hidden');
+            moonIconMobile.classList.remove('hidden');
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            if (isDark) {
+                localStorage.setItem('theme', 'dark');
+                showSunIcon();
+            } else {
+                localStorage.setItem('theme', 'light');
+                showMoonIcon();
+            }
+        }
+
+        themeToggleDesktop.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
         // Hamburger Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -552,9 +710,8 @@
             });
         });
 
-        // Dynamic Countdown Timer to hypothetical Y2Q (Year to Quantum)
-        // Let's set Y2Q as April 14, 2030 (Estimated average projection of quantum risk)
-        const y2qDate = new Date('April 14, 2030 00:00:00').getTime();
+        // Dynamic Countdown Timer to Quantum Advantage Horizon (Estimated Year 2029 for Fault-Tolerant Quantum Computers)
+        const y2qDate = new Date('April 14, 2029 00:00:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
